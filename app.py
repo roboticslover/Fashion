@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 from tensorflow.keras.models import load_model
+import logging
 
 # Title
 st.title("Fashion MNIST Classification with Convolutional Neural Networks")
@@ -48,14 +49,19 @@ def classify_image(model):
     # Generate a random image
     img = generate_random_image()
 
-    # Make prediction
-    prediction = model.predict(img)
-    predicted_class = np.argmax(prediction)
+    try:
+        # Make prediction
+        prediction = model.predict(img)
+        predicted_class = np.argmax(prediction)
 
-    # Get the class label
-    class_label = class_labels[predicted_class]
+        # Get the class label
+        class_label = class_labels[predicted_class]
 
-    return img, class_label
+        return img, class_label
+
+    except Exception as e:
+        logging.error("Error occurred during image classification: %s", str(e))
+        return None, None
 
 # Streamlit app
 
@@ -71,9 +77,12 @@ def main():
     if st.button('Classify Random Fashion Image'):
         with st.spinner('Classifying...'):
             img, class_label = classify_image(model)
-            # Display the random image
-            st.image(img.reshape(
-                (28, 28)), caption=f'Predicted Class: {class_label}', use_column_width=True)
+            if img is not None and class_label is not None:
+                # Display the random image
+                st.image(img.reshape(
+                    (28, 28)), caption=f'Predicted Class: {class_label}', use_column_width=True)
+            else:
+                st.error("An error occurred during image classification. Please try again.")
 
     # Display Source Code
     if st.button("Show Source Code"):
@@ -82,6 +91,7 @@ def main():
 import streamlit as st
 import numpy as np
 from tensorflow.keras.models import load_model
+import logging
 
 # Title
 st.title("Fashion MNIST Classification with Convolutional Neural Networks")
@@ -129,14 +139,19 @@ def classify_image(model):
     # Generate a random image
     img = generate_random_image()
 
-    # Make prediction
-    prediction = model.predict(img)
-    predicted_class = np.argmax(prediction)
+    try:
+        # Make prediction
+        prediction = model.predict(img)
+        predicted_class = np.argmax(prediction)
 
-    # Get the class label
-    class_label = class_labels[predicted_class]
+        # Get the class label
+        class_label = class_labels[predicted_class]
 
-    return img, class_label
+        return img, class_label
+
+    except Exception as e:
+        logging.error("Error occurred during image classification: %s", str(e))
+        return None, None
 
 # Streamlit app
 
@@ -152,9 +167,12 @@ def main():
     if st.button('Classify Random Fashion Image'):
         with st.spinner('Classifying...'):
             img, class_label = classify_image(model)
-            # Display the random image
-            st.image(img.reshape(
-                (28, 28)), caption=f'Predicted Class: {class_label}', use_column_width=True)
+            if img is not None and class_label is not None:
+                # Display the random image
+                st.image(img.reshape(
+                    (28, 28)), caption=f'Predicted Class: {class_label}', use_column_width=True)
+            else:
+                st.error("An error occurred during image classification. Please try again.")
 
 
 # Run the Streamlit app
