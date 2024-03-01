@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 from tensorflow.keras.models import load_model
+from PIL import Image
 
 # Load the Fashion Classification CNN model with error handling
 @st.cache(allow_output_mutation=True)
@@ -39,8 +40,10 @@ def main():
     if st.button('Classify Random Fashion Image'):
         with st.spinner('Classifying...'):
             img, class_label = classify_image(model)
-            # Display the random image
-            st.image(img.reshape((28, 28)), caption=f'Predicted Class: {class_label}', use_column_width=True)
+            # Resize the image for better display
+            resized_img = Image.fromarray((img.reshape((28, 28)) * 255).astype(np.uint8)).resize((150, 150))
+            # Display the resized image
+            st.image(resized_img, caption=f'Predicted Class: {class_label}', use_column_width=True)
 
 # Run the Streamlit app
 if __name__ == '__main__':
