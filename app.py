@@ -14,8 +14,6 @@ st.markdown("""
              """)
 
 # Load the Fashion Classification CNN model with error handling
-
-
 @st.cache(allow_output_mutation=True)
 def load_fashion_model():
     try:
@@ -25,14 +23,11 @@ def load_fashion_model():
         st.error(
             "Error: Unable to load the model. Please check if the model file exists.")
 
-
 # Define class labels
 class_labels = ["T-shirt/top", "Trouser", "Pullover", "Dress",
                 "Coat", "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
 
 # Function to generate a random fashion image
-
-
 def generate_random_image():
     # Generate a random image array
     random_image = np.random.rand(28, 28)  # Assuming 28x28 grayscale images
@@ -43,8 +38,6 @@ def generate_random_image():
     return img
 
 # Function to classify a random fashion image
-
-
 def classify_image(model):
     # Generate a random image
     img = generate_random_image()
@@ -64,8 +57,6 @@ def classify_image(model):
         return None, None
 
 # Streamlit app
-
-
 def main():
     st.title('Fashion Classification')
     st.write('This app allows you to classify fashion items without uploading images.')
@@ -97,15 +88,13 @@ import logging
 st.title("Fashion MNIST Classification with Convolutional Neural Networks")
 
 # Description
-st.markdown('''
+st.markdown("""
              This Streamlit app demonstrates a simple Convolutional Neural Network (CNN) model for classifying 
              fashion images from the Fashion MNIST dataset. The model is trained on a subset of the Fashion MNIST 
              dataset and then evaluated on a separate test set. Additionally, the trained model is saved for future use.
-             ''')
+             """)
 
 # Load the Fashion Classification CNN model with error handling
-
-
 @st.cache(allow_output_mutation=True)
 def load_fashion_model():
     try:
@@ -115,14 +104,11 @@ def load_fashion_model():
         st.error(
             "Error: Unable to load the model. Please check if the model file exists.")
 
-
 # Define class labels
 class_labels = ["T-shirt/top", "Trouser", "Pullover", "Dress",
                 "Coat", "Sandal", "Shirt", "Sneaker", "Bag", "Ankle boot"]
 
 # Function to generate a random fashion image
-
-
 def generate_random_image():
     # Generate a random image array
     random_image = np.random.rand(28, 28)  # Assuming 28x28 grayscale images
@@ -133,8 +119,6 @@ def generate_random_image():
     return img
 
 # Function to classify a random fashion image
-
-
 def classify_image(model):
     # Generate a random image
     img = generate_random_image()
@@ -154,8 +138,6 @@ def classify_image(model):
         return None, None
 
 # Streamlit app
-
-
 def main():
     st.title('Fashion Classification')
     st.write('This app allows you to classify fashion items without uploading images.')
@@ -174,13 +156,18 @@ def main():
             else:
                 st.error("An error occurred during image classification. Please try again.")
 
+    # Display Source Code
+    if st.button("Show Source Code"):
+        st.text("Source Code:")
+        st.code("""
+# Paste your source code here
+        """)
 
 # Run the Streamlit app
 if __name__ == '__main__':
     main()
-            """)
-
-
+        """)
+        
 # Run the Streamlit app
 if __name__ == '__main__':
     main()
