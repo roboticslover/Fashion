@@ -88,11 +88,11 @@ import logging
 st.title("Fashion MNIST Classification with Convolutional Neural Networks")
 
 # Description
-st.markdown("""
+st.markdown('''
              This Streamlit app demonstrates a simple Convolutional Neural Network (CNN) model for classifying 
              fashion images from the Fashion MNIST dataset. The model is trained on a subset of the Fashion MNIST 
              dataset and then evaluated on a separate test set. Additionally, the trained model is saved for future use.
-             """)
+             ''')
 
 # Load the Fashion Classification CNN model with error handling
 @st.cache(allow_output_mutation=True)
