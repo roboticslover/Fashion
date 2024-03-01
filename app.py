@@ -17,26 +17,14 @@ class_labels = ["T-shirt/top", "Trouser", "Pullover", "Dress",
 
 # Function to generate a random fashion image
 def generate_random_image():
-    # Generate a random image array
-    random_image = np.random.rand(28, 28)  # Assuming 28x28 grayscale images
-
-    # Reshape the image for compatibility with the model
-    img = random_image.reshape(1, 28, 28, 1)
-
-    return img
+    return np.random.rand(1, 28, 28, 1)  # Assuming 28x28 grayscale images
 
 # Function to classify a random fashion image
 def classify_image(model):
-    # Generate a random image
     img = generate_random_image()
-
-    # Make prediction
     prediction = model.predict(img)
     predicted_class = np.argmax(prediction)
-
-    # Get the class label
     class_label = class_labels[predicted_class]
-
     return img, class_label
 
 # Streamlit app
